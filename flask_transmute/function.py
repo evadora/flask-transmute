@@ -73,7 +73,8 @@ def _extract_arguments_and_return_type(func):
     attributes = (getattr(argspec, "args", []) +
                   getattr(argspec, "keywords", []))
     defaults = argspec.defaults or []
-
+    # Reverse the defaults so they match with the reverse attributes below.
+    defaults = defaults[::-1]
     arguments = {}
     for i, name in enumerate(reversed(attributes)):
         if name == "self":
